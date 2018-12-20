@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<script src="vue-2.4.0.js"></script>
+	<style>
+	  .inner{
+		  height:150px;
+		  background-color: dark
+	  }
+	</style>
+</head>
+<body>
+	<div  id="app">
+			<!-- 使用.capture实现捕获触发事件的机制 -->
+		<div class="inner" @click.capture="divHandler">
+			<!-- 使用.stop阻止冒泡 -->
+			<input type="button" value="戳他" @click.stop="btnHandler">
+		</div>
+		<!-- 使用.prevent阻止默认行为 -->
+		<a href="www.baidu.com" @click.prevent.once="linkBtn">有问题先去百度</a>
+		<!-- 使用.once只触发一次 -->
+		
+	</div>
+
+	<script>
+	   var vm=new Vue({
+		   el:"#app",
+		   data:{},
+		   methods:{
+			   divHandler(){
+				   console.log("这是触发了inner div的点击事件")
+			   },
+			   btnHandler(){
+				   console.log("这是触发了btn按钮的点击事件")
+			   },
+			   linkBtn(){
+				   console.log('出发了连接的点击事件')
+			   }
+		   }
+	   })
+	</script>
+</body>
+</html>
